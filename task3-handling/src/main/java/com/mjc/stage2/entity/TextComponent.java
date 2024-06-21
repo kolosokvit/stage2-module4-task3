@@ -13,11 +13,8 @@ public class TextComponent extends AbstractTextComponent {
     }
     @Override
     public String operation() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (AbstractTextComponent abstractTextComponent: componentList){
-            stringBuilder.append(abstractTextComponent.operation());
-        }
-        return stringBuilder.toString();
+        return componentList.stream().map(AbstractTextComponent::operation)
+                .collect(Collectors.joining(componentType.getDelimiter()));
     }
 
     @Override
